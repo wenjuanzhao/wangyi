@@ -23,7 +23,7 @@
     </div>
     <ul class="songs clearfix">
         <li class="song-list" v-bind:key="item.id" v-for="item in songList">
-          <a class="song-container">
+          <a class="song-container" @click="goToMusicList(item.id)">
               <span class="listen-cnt"><i class="icon song-list-detail-listen-icon" style="margin: 0"></i>{{item.playCount |wan}}</span>
             <img v-bind:src="item.coverImgUrl">
           </a>
@@ -55,7 +55,16 @@
                         _this.songList=res.playlists
                       }
                   })
-              }
+              },
+        goToMusicList(id){
+
+                  this.$router.push({
+                      name:'MusicList',
+                      params:{
+                          id:id
+                      }
+                  })
+        }
       }
         ,created(){
             this.getSongList();

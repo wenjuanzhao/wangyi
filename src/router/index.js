@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Index from '@/components/Index'
+import MusicList from '@/components/MusicList'
 import MyList from '@/components/index/MyList'
 import RankingList from '@/components/index/RankingList'
 import SongMenu from '@/components/index/SongMenu'
@@ -37,6 +38,11 @@ const router=new Router({
         },
       ]
     },
+    {
+      path:'/musicList/id',
+      name:'MusicList',
+      component:MusicList
+    }
   ]
 })
 export default router
