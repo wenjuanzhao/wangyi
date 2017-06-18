@@ -3,7 +3,6 @@
       <swipe class="my-swipe" :auto="auto">
           <swipe-item class="slide" v-for="item in bannerList">
             <img class="slide-img" :src="item.pic">
-            <h1>sasa</h1>
           </swipe-item>
       </swipe>
  </div>

@@ -99,4 +99,7 @@ ul, h4, p {
 ul li{list-style: none;}
 .my-list-component,.mv-list-component{margin-top:1.40rem;}
 .ranking-list-component{margin-top:1.5rem;}
+  i{
+    margin: 0;
+  }
 </style>

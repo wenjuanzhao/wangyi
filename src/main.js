@@ -7,6 +7,7 @@ import VueResource from 'vue-resource'
 import vuex from 'vuex'
 import storeConfig from './store/index'
 
+
 import Mint from 'mint-ui';
 import 'mint-ui/lib/style.css';
 Vue.use(Mint);
@@ -30,5 +31,13 @@ new Vue({
     store,
     template: '<App/>',
     components: { App }
+})
+Vue.filter("wan",function (value) {
+    if(value){
+        var wan=value.toString();
+        return wan.substr(0,wan.length-4)+"万"
+    }
+
+    return value
 })
 

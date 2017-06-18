@@ -1,5 +1,6 @@
 <template>
  <div class="my-list-component">
+
     <index-banner></index-banner>
    <links></links>
    <cate-title title="推荐歌单"></cate-title>
@@ -29,6 +30,7 @@
  </div>
 </template>
 <script>
+
    import IndexBanner from  './IndexBanner.vue'
    import Links from '../common/Links.vue'
    import CateTitle from '../common/CateTitle.vue'

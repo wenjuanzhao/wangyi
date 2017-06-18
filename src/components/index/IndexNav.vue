@@ -25,10 +25,23 @@
             }
         },methods:{
         goToRouter(name,index){
-            if(this.tabIndex===index) return
-          this.tabIndex=index;
+            if(this.tabIndex===index) return;this.tabIndex=index;
              this.$router.push({name})
         }
+      },created(){
+        var i=location.href.indexOf("#")
+              if(i!=-1) {
+                var type = location.href.substr(i + 2);
+                console.log(type)
+                if(type=='songMenu'){
+                    this.tabIndex=1;
+                }else if(type=='mvList'){
+                  this.tabIndex=2;
+                }
+                else if(type=='rankingList'){
+                  this.tabIndex=3;
+                }
+              }
       }
     }
 </script>
