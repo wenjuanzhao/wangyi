@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Index from '@/components/Index'
+import Player from '@/components/Player'
 import MusicList from '@/components/MusicList'
 import MyList from '@/components/index/MyList'
 import RankingList from '@/components/index/RankingList'
@@ -42,6 +43,11 @@ const router=new Router({
       path:'/musicList/id',
       name:'MusicList',
       component:MusicList
+    },
+    {
+      path:'/player',
+      name:'Player',
+      component:Player
     }
   ]
 })

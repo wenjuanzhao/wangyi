@@ -59,15 +59,17 @@
         </div>
         <ul class="music-list">
             <template v-for="(item,index) in tracks">
-                <li class="flex music-list-item">
-                   <div class="music-list-item-index">
+                <li class="flex music-list-item" @click="playThis(item,index)" :key="item.id">
+                   <div v-if="songMsg.id!==item.id" class="music-list-item-index">
                      <span>{{index+1}}</span>
                    </div>
+                  <div v-else class="music-list-item-playing background"></div>
                    <div class="music-item-container">
                        <div class="music-item text-ellipsis">
                             <div class="flex music-detail"> {{item.name}}</div>
-                            <div class="flex music-singer">{{item.ar}} </div>
+                            <div class="flex music-singer">{{item.al.name}} </div>
                        </div>
+                       <div class="icon-ellipsis background">qwqw</div>
                    </div>
                 </li>
             </template>
@@ -89,23 +91,37 @@
      computed:{
                pId(){
                    return this.$route.params.id
+               },
+               songMsg(){
+                   return this.$store.state.songMsg;
                }
     }
          ,methods:{
                loadData(){
                    this.$http({url:'music.php',params:{pId:this.pId}}).then(function (res) {
-                       console.log(res.data)
                         if(res.data.code==200){
                            this.songListInfo=res.data.playlist
                           this.creator=res.data.playlist.creator
                           this.tracks=res.data.playlist.tracks
                         }
                      })
-               }
+               },playThis(songMsg,index){
+                   console.log(this.songMsg.id,songMsg.id)
+                if(this.songMsg.id===songMsg.id){
+                    this.$router.push({name:'player'})
+                    return
+                }
+               this.$store.dispatch('setSongMsg',{
+                   id: songMsg.id, //  歌曲id
+                 name: songMsg.name, // 歌曲名称
+                 artists: songMsg.ar, //  演唱歌手
+                 album: songMsg.al, //  专辑信息，主要用于封面图及背景高斯模糊
+                 mvid: songMsg.mv //  mv链接ID，0为没有id
+               })
+      }
     },
       created(){
              this.loadData();
-
       }
   }
 </script>
@@ -271,5 +287,20 @@
     height:.3rem;
     padding-right: .2rem;
     align-items: center;
+  }
+  .icon-ellipsis{
+      flex-shrink: 0;padding: 0.16rem;width:0.16rem;height: 100%;background-image: url("../../static/images/ellipse.png");
+    background-size: cover;background-position:center center;
+  }
+  .icon-ellipsis-white{
+      background-image: url("../../static/images/find_music/ellipse.png");
+  }
+  .music-list-item-playing {
+    flex: 1;
+    width: .5rem;
+    height: .25rem;
+    background: url("../../static/images/icon_loudspeaker_playing.png") center  no-repeat;
+    background-size: contain;  text-align: center;
+    line-height: .5rem;margin-top: .25rem;
   }
 </style>
